@@ -1,0 +1,9 @@
+rna_tumor_bam:
+    class: File
+    path: /Users/zskidmor/Desktop/test_hcc1395.bam
+reference:
+    class: File
+    path: /Users/zskidmor/Desktop/all_sequences.fa
+transcriptome:
+    class: File
+    path: /Users/zskidmor/Desktop/Homo_sapiens.GRCh37.75.gtf
