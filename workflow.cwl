@@ -17,9 +17,9 @@ inputs:
     transcriptome:
         type: File
         doc: GTF file giving the transcriptome used to annotate against
-#    variants:
-#        type: File
-#        doc: VCF file providing somatic variant calls
+    variants:
+        type: File
+        doc: VCF file providing somatic variant calls
 #    polymorphisms:
 #        type: File
 #        doc: VCF file providing polymorphic loci in order to determine allele specific expression
@@ -27,7 +27,7 @@ inputs:
 outputs:
     cis_splice_effects_identify:
         type: File
-        outputSource: cis_splice_effects
+        outputSource: cis_splice_effects/aberrant_splice_junctions
 #    cis_ase_identify:
 #        type: File
 #        outputSource: cis_ase

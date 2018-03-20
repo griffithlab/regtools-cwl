@@ -1,9 +1,12 @@
 rna_tumor_bam:
     class: File
-    path: /Users/zskidmor/Desktop/test_hcc1395.bam
+    path: /Users/zskidmor/git_repos/regtools/tests/integration-test/data/bam/test_hcc1395.2.bam
 reference:
     class: File
-    path: /Users/zskidmor/Desktop/all_sequences.fa
+    path: /Users/zskidmor/git_repos/regtools/tests/integration-test/data/fa/test_chr22.fa
 transcriptome:
     class: File
-    path: /Users/zskidmor/Desktop/Homo_sapiens.GRCh37.75.gtf
+    path: /Users/zskidmor/git_repos/regtools/tests/integration-test/data/gtf/test_ensemble_chr22.2.gtf
+variants:
+    class: File
+    path: /Users/zskidmor/git_repos/regtools/tests/integration-test/data/vcf/test1.vcf
