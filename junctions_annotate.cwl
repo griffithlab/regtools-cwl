@@ -4,36 +4,29 @@ class: CommandLineTool
 
 cwlVersion: v1.0
 
-baseCommand: ["regtools","cis-splice-effects","identify"]
+baseCommand: ["regtools","junctions","annotate"]
 
-arguments: [ "-i" , $(inputs.i) , "-e", $(inputs.e) ]
-
-stdout: cis_splice_effects_identify.i$(inputs.i).e$(inputs.e).tsv
+stdout: junctions_annotate.bed
 
 requirements:
   - class: DockerRequirement
     dockerImageId: griffithlab/regtools
 
 inputs:
-    variants:
+    junctions:
         type: File
         inputBinding:
             position: 1
-    bam:
-        type: File
-        inputBinding:
-            position: 2
-        secondaryFiles: [^.bam.bai]
     ref:
         type: File
         inputBinding:
-            position: 3
+            position: 2
         secondaryFiles: [^.fa.fai]
     gtf:
         type: File
         inputBinding:
-            position: 4
+            position: 3
 
 outputs:
-    aberrant_splice_junctions:
+    junctions_annotated:
         type: stdout
