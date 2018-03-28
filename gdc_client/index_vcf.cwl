@@ -22,7 +22,8 @@ inputs:
             position: 1
 
 outputs:
-    vcf_index:
+    indexed_vcf:
         type: File
+        secondaryFiles: [ .tbi ]
         outputBinding:
-            glob: "*.vcf.gz.tbi"
+            glob: "*.vcf.gz"
