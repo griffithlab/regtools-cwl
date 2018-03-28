@@ -6,7 +6,9 @@ cwlVersion: v1.0
 
 baseCommand: ["regtools","cis-splice-effects","identify"]
 
-stdout: cis_splice_effects_identify.tsv
+arguments: [ "-i" , $(inputs.i) , "-e", $(inputs.e) ]
+
+stdout: cis_splice_effects_identify.i$(inputs.i).e$(inputs.e).tsv
 
 requirements:
   - class: DockerRequirement

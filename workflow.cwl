@@ -4,6 +4,9 @@ cwlVersion: v1.0
 class: Workflow
 label: "regtools workflow"
 
+requirements:
+    - class: ScatterFeatureRequirement
+
 inputs:
     rna_tumor_bam:
         type: File
@@ -17,10 +20,16 @@ inputs:
     variants:
         type: File
         doc: VCF file providing somatic variant calls
+    e:
+        type: string[]?
+        default: ["20", "5"]
+    i:
+        type: string[]?
+        default: ["5", "5"]
 
 outputs:
     cis_splice_effects_identify:
-        type: File
+        type: File[]
         outputSource: cis_splice_effects/aberrant_splice_junctions
     junctions_extract_out:
         type: File
@@ -31,8 +40,12 @@ outputs:
 
 steps:
     cis_splice_effects:
+        scatter: [ e, i ]
+        scatterMethod: dotproduct
         run: cis_splice_effects.cwl
         in:
+            e: e
+            i: i
             variants: variants
             bam: rna_tumor_bam
             ref: reference
