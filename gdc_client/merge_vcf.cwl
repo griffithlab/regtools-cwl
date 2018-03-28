@@ -13,9 +13,6 @@ stdout: merged.vcf
 requirements:
   - class: DockerRequirement
     dockerImageId:  biocontainers/vcftools
-  - class: InitialWorkDirRequirement
-    listing:
-        - $(inputs.vcf_file)
 
 inputs:
     vcf_file:

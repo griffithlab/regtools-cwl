@@ -85,5 +85,5 @@ steps:
         run: merge_vcf.cwl
         in:
             vcf_file: [ bgzip_vcf/bgzip_vcf_file ]
-            secondaryFiles: [ vcf_index ]
+            secondaryFiles: [ index_vcf/vcf_index ]
         out: [ merged_vcf ]
