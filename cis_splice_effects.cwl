@@ -23,7 +23,7 @@ inputs:
         type: File
         inputBinding:
             position: 2
-        secondaryFiles: [^.bam.bai]
+        secondaryFiles: [ ^.bai ]
     ref:
         type: File
         inputBinding:

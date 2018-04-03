@@ -17,7 +17,7 @@ inputs:
         type: File
         inputBinding:
             position: 1
-        secondaryFiles: [^.bam.bai]
+        secondaryFiles: [ ^.bai ]
 
 outputs:
     junctions:

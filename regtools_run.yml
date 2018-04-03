@@ -1,12 +1,10 @@
-rna_tumor_bam:
+gdc_token:
     class: File
-    path: /Users/zskidmor/git_repos/regtools/tests/integration-test/data/bam/test_hcc1395.2.bam
+    path: 
+tcga_sample: TCGA-AA-AAAA-00A
 reference:
     class: File
-    path: /Users/zskidmor/git_repos/regtools/tests/integration-test/data/fa/test_chr22.fa
+    path:
 transcriptome:
     class: File
-    path: /Users/zskidmor/git_repos/regtools/tests/integration-test/data/gtf/test_ensemble_chr22.2.gtf
-variants:
-    class: File
-    path: /Users/zskidmor/git_repos/regtools/tests/integration-test/data/vcf/test1.vcf
+    path:

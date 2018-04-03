@@ -29,16 +29,17 @@ outputs:
     bam_file:
         type: File
         outputSource: download_bam/bam_file
-#    vcf_manifest:
-#        type: File
-#        outputSource: obtain_manifest_vcf/vcf_manifest
-#    index_vcf_file:
-#        type: File[]
-#        outputSource: index_vcf/indexed_vcf
-#        secondaryFiles: [ .tbi ]
-#    merged_vcf_file:
-#        type: File
-#        outputSource: merge_vcf/merged_vcf
+        secondaryFiles: [ ^.bai ]
+    vcf_manifest:
+        type: File
+        outputSource: obtain_manifest_vcf/vcf_manifest
+    index_vcf_file:
+        type: File[]
+        outputSource: index_vcf/indexed_vcf
+        secondaryFiles: [ .tbi ]
+    merged_vcf_file:
+        type: File
+        outputSource: merge_vcf/merged_vcf
 
 steps:
     obtain_manifest_bam:
@@ -72,3 +73,30 @@ steps:
         in:
             vcf_file: download_vcf/vcf_file
         out: [ decompress_vcf_file ]
+    bgzip_vcf:
+        scatter: [ vcf_file ]
+        scatterMethod: dotproduct
+        run: bgzip_vcf.cwl
+        in:
+            vcf_file: decompress_vcf/decompress_vcf_file
+        out: [ bgzip_vcf_file ]
+    index_vcf:
+        scatter: [ vcf_file ]
+        scatterMethod: dotproduct
+        run: index_vcf.cwl
+        in:
+            vcf_file: bgzip_vcf/bgzip_vcf_file
+        out: [ indexed_vcf ]
+    merge_vcf:
+        run: merge_vcf.cwl
+        in:
+            vcf_file: [ index_vcf/indexed_vcf ]
+        out: [ merged_vcf ]
+    regtools:
+        run: ../workflow.cwl
+        in:
+            rna_tumor_bam: download_bam/bam_file
+            reference: reference
+            transcriptome: transcriptome
+            variants: merge_vcf/merged_vcf
+        out: []

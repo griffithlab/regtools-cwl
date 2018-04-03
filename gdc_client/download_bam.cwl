@@ -21,6 +21,6 @@ inputs:
 outputs:
     bam_file:
         type: File
-        secondaryFiles: [.bai]
+        secondaryFiles: [ ^.bai ]
         outputBinding:
             glob: "*/*.bam"
