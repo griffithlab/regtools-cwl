@@ -11,6 +11,7 @@ arguments: [ "download", "-m", $(inputs.bam_manifest), "-t", $(inputs.gdc_token)
 requirements:
   - class: DockerRequirement
     dockerImageId: mgibio/gdc-client
+    dockerPull: mgibio/gdc-client
 
 inputs:
     bam_manifest:

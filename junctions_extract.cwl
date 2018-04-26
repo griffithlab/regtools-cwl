@@ -11,6 +11,7 @@ stdout: junctions_extract.bed
 requirements:
   - class: DockerRequirement
     dockerImageId: griffithlab/regtools
+    dockerPull: griffithlab/regtools
 
 inputs:
     bam:

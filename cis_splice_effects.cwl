@@ -13,6 +13,7 @@ stdout: cis_splice_effects_identify.i$(inputs.i).e$(inputs.e).tsv
 requirements:
   - class: DockerRequirement
     dockerImageId: griffithlab/regtools
+    dockerPull: griffithlab/regtools
 
 inputs:
     variants:
