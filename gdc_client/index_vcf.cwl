@@ -11,6 +11,7 @@ arguments: [ "-p", "vcf" ]
 requirements:
   - class: DockerRequirement
     dockerImageId:  biocontainers/vcftools
+    dockerPull: biocontainers/vcftools
   - class: InitialWorkDirRequirement
     listing:
         - $(inputs.vcf_file)

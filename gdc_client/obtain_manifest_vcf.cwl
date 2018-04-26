@@ -9,6 +9,7 @@ arguments: [ { valueFrom: "token=`cat $(inputs.gdc_token.path)`", shellQuote : f
 requirements:
   - class: DockerRequirement
     dockerImageId: mgibio/gdc-client
+    dockerPull: mgibio/gdc-client
   - class: ShellCommandRequirement
 
 inputs:

@@ -12,7 +12,8 @@ stdout: merged.vcf
 
 requirements:
   - class: DockerRequirement
-    dockerImageId:  biocontainers/vcftools
+    dockerImageId: biocontainers/vcftools
+    dockerPull: biocontainers/vcftools
 
 inputs:
     vcf_file:

@@ -11,6 +11,7 @@ arguments: [ "download", "-m", $(inputs.vcf_manifest), "-t", $(inputs.gdc_token)
 requirements:
   - class: DockerRequirement
     dockerImageId: mgibio/gdc-client
+    dockerPull: mgibio/gdc-client
 
 inputs:
     vcf_manifest:

@@ -11,6 +11,7 @@ stdout: junctions_annotate.bed
 requirements:
   - class: DockerRequirement
     dockerImageId: griffithlab/regtools
+    dockerPull: griffithlab/regtools
 
 inputs:
     junctions:
