@@ -23,13 +23,13 @@ inputs:
         doc: GTF file giving the transcriptome used to annotate against
 
 outputs:
-    bam_manifest:
-        type: File
-        outputSource: obtain_manifest_bam/bam_manifest
-    bam_file:
-        type: File
-        outputSource: download_bam/bam_file
-        secondaryFiles: [ ^.bai ]
+#    bam_manifest:
+#        type: File
+#        outputSource: obtain_manifest_bam/bam_manifest
+#    bam_file:
+#        type: File
+#        outputSource: download_bam/bam_file
+#        secondaryFiles: [ ^.bai ]
     vcf_manifest:
         type: File
         outputSource: obtain_manifest_vcf/vcf_manifest
@@ -40,20 +40,23 @@ outputs:
     merged_vcf_file:
         type: File
         outputSource: merge_vcf/merged_vcf
+    filtered_vcf_file:
+        type: File
+        outputSource: filter_vcf/filtered_vcf
 
 steps:
-    obtain_manifest_bam:
-        run: obtain_manifest_bam.cwl
-        in:
-            gdc_token: gdc_token
-            tcga_sample: tcga_sample
-        out: [ bam_manifest ]
-    download_bam:
-        run: download_bam.cwl
-        in:
-            gdc_token: gdc_token
-            bam_manifest: obtain_manifest_bam/bam_manifest
-        out: [ bam_file ]
+#    obtain_manifest_bam:
+#        run: obtain_manifest_bam.cwl
+#        in:
+#            gdc_token: gdc_token
+#            tcga_sample: tcga_sample
+#        out: [ bam_manifest ]
+#    download_bam:
+#        run: download_bam.cwl
+#        in:
+#            gdc_token: gdc_token
+#            bam_manifest: obtain_manifest_bam/bam_manifest
+#        out: [ bam_file ]
     obtain_manifest_vcf:
         run: obtain_manifest_vcf.cwl
         in:
@@ -92,11 +95,17 @@ steps:
         in:
             vcf_file: [ index_vcf/indexed_vcf ]
         out: [ merged_vcf ]
-    regtools:
-        run: ../workflow.cwl
+    filter_vcf:
+        run: filter_vcf.cwl
         in:
-            rna_tumor_bam: download_bam/bam_file
-            reference: reference
-            transcriptome: transcriptome
-            variants: merge_vcf/merged_vcf
-        out: []
+            merged_vcf_file: merge_vcf/merged_vcf 
+            caller_vcf_file: [ index_vcf/indexed_vcf ]
+        out: [ filtered_vcf ]
+#    regtools:
+#        run: ../workflow.cwl
+#        in:
+#            rna_tumor_bam: download_bam/bam_file
+#            reference: reference
+#            transcriptome: transcriptome
+#            variants: merge_vcf/merged_vcf
+#        out: []
