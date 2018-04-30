@@ -2,7 +2,8 @@
 cwl workflow for running regtools
 
 # toil command
-cwltool --outdir /Users/zskidmor/Desktop/ workflow.cwl regtools_run.yml
+cd ./regtools-cwl/gdc_client/
+cwltool --outdir /Users/zskidmor/Desktop/cwl_test workflow.cwl run.yml
 
 ### notes
-Note that the regtools_run.yml file specifies the inputs for the workflow, these inputs are from the test data for regtools and can be obtained after cloning the regtools [repo](https://github.com/griffithlab/regtools)
+Note that the run.yml file specifies the inputs for the workflow, these inputs are from the test data for regtools and can be obtained after cloning the regtools [repo](https://github.com/griffithlab/regtools)

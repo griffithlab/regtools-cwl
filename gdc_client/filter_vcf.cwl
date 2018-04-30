@@ -8,7 +8,7 @@ baseCommand: [ "Rscript", "helper.R" ]
 
 requirements:
   - class: DockerRequirement
-    dockerPull:  tp81/rstudio-ggplot2-datatable
+    dockerImageId:  zlskdimore/regtools-cwl
   - class: InitialWorkDirRequirement
     listing:
     - entryname: 'helper.R'
@@ -34,7 +34,7 @@ requirements:
 
         # key the file for merge later
         fileData_merge$key <- paste(fileData_merge$`#CHROM`, fileData_merge$`POS`, fileData_merge$`REF`, fileData_merge$`ALT`, sep=":")
-        
+
         ################################################################################
         ################### read in individual caller variant files ####################
 
@@ -66,6 +66,9 @@ requirements:
         # merge the variants of the merged vcf with the individual callers
         out <- Reduce(function(x, y) merge(x, y, all=TRUE), vcf_data)
         out$key <- NULL
+
+        # nothing in the #CHROM column should be na, if it is remove it
+        out <- out[!is.na(out$`#CHROM`),]
 
         ################################################################################
         ############### tally the total number of callers per variant ##################
