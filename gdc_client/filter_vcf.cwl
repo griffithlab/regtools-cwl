@@ -8,7 +8,7 @@ baseCommand: [ "Rscript", "helper.R" ]
 
 requirements:
   - class: DockerRequirement
-    dockerImageId:  zlskdimore/regtools-cwl
+    dockerPull: griffithlab/regtools-cwl
   - class: InitialWorkDirRequirement
     listing:
     - entryname: 'helper.R'
