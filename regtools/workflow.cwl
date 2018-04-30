@@ -22,15 +22,21 @@ inputs:
         doc: VCF file providing somatic variant calls
     e:
         type: string[]?
-        default: ["20", "5"]
+        default: ["2", "5"]
     i:
         type: string[]?
-        default: ["5", "5"]
+        default: ["3", "50"]
 
 outputs:
     cis_splice_effects_identify:
         type: File[]
         outputSource: cis_splice_effects/aberrant_splice_junctions
+    cis_splice_effects_identify_v2:
+        type: File[]
+        outputSource: cis_splice_effects/aberrant_splice_junctions_v2
+    cis_splice_effects_identify_v3:
+        type: File[]
+        outputSource: cis_splice_effects/aberrant_splice_junctions_v3
     junctions_extract_out:
         type: File
         outputSource: junctions_extract/junctions
@@ -51,6 +57,22 @@ steps:
             ref: reference
             gtf: transcriptome
         out: [ aberrant_splice_junctions ]
+    cis_splice_effects_v2:
+        run: cis_splice_effects_v2.cwl
+        in:
+            variants: variants
+            bam: rna_tumor_bam
+            ref: reference
+            gtf: transcriptome
+        out: [ aberrant_splice_junctions_v2 ]
+    cis_splice_effects_v3:
+        run: cis_splice_effects_v3.cwl
+        in:
+            variants: variants
+            bam: rna_tumor_bam
+            ref: reference
+            gtf: transcriptome
+        out: [ aberrant_splice_junctions_v3 ]
     junctions_extract:
         run: junctions_extract.cwl
         in:
