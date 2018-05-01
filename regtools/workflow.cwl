@@ -32,11 +32,11 @@ outputs:
         type: File[]
         outputSource: cis_splice_effects/aberrant_splice_junctions
     cis_splice_effects_identify_v2:
-        type: File[]
-        outputSource: cis_splice_effects/aberrant_splice_junctions_v2
+        type: File
+        outputSource: cis_splice_effects_v2/aberrant_splice_junctions
     cis_splice_effects_identify_v3:
-        type: File[]
-        outputSource: cis_splice_effects/aberrant_splice_junctions_v3
+        type: File
+        outputSource: cis_splice_effects_v3/aberrant_splice_junctions
     junctions_extract_out:
         type: File
         outputSource: junctions_extract/junctions
@@ -64,7 +64,7 @@ steps:
             bam: rna_tumor_bam
             ref: reference
             gtf: transcriptome
-        out: [ aberrant_splice_junctions_v2 ]
+        out: [ aberrant_splice_junctions ]
     cis_splice_effects_v3:
         run: cis_splice_effects_v3.cwl
         in:
@@ -72,7 +72,7 @@ steps:
             bam: rna_tumor_bam
             ref: reference
             gtf: transcriptome
-        out: [ aberrant_splice_junctions_v3 ]
+        out: [ aberrant_splice_junctions ]
     junctions_extract:
         run: junctions_extract.cwl
         in:
